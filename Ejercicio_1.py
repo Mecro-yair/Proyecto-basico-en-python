@@ -1,3 +1,8 @@
+import os
+
+def clear_screen():
+    # Comando para limpiar la pantalla en Windows
+    os.system('cls')
 def Promedio(x,y,z):
     promedio = (x+ y +z)/3
     return promedio
@@ -27,13 +32,16 @@ while True:
     if base20==True:
         if promedio >=10.5 :
             print(nombre)
-            print("Aprobo el curso ")
+            print("Aprobo el curso ")   
         else:
-            print("Reprobo el curso ")
+            print("Reprobo el curso ")       
     else:
-        print("ERROR!_NUMBER")
+        input(print("ERROR!_NUMBER"))
         exit(0)
+    
     quest=input("Continuar con otro alumno? si/no:\n")
+    
     if quest!="si":
-        print("FIN DEL PROGRAMA")
+        input(print("FIN DEL PROGRAMA"))
         exit(0)
+    clear_screen()
