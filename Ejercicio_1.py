@@ -1,4 +1,5 @@
 import os
+from time import sleep
 
 def clear_screen():
     # Comando para limpiar la pantalla en Windows
@@ -13,6 +14,13 @@ def calificacion_en_base20(x,y,z):
     else:
         cumple_base20=False
     return cumple_base20
+
+def notas_porcentaje(c,p,d,pc,pp,pd):
+    nc=c*pc/100
+    np=p*pp/100
+    nd=d*pd/100
+    nf=nc+np+nd
+    return nf
 """
 Se agregó una validación de notas
 Se actualizó la condicional de notas
@@ -20,28 +28,65 @@ se agregó entrada y salida de nombre del estudiante
 Se optimizo el codigo añadiendo una funciones
 Se agrego un bucle para preguntar si se desea continuar con el programa
 """
-#Bucle pregunta
 while True:
-    nombre=input("INGRESE EL NOMBRE DEL ALUMNO:\n")
-    nota1= float(input("Digite su primera calificación:\n"))
-    nota2= float(input("Digite su primera calificación:\n"))
-    nota3= float(input("Digite su tercera calificación:\n"))
-    #Almaceno funciones
-    promedio= Promedio(nota1,nota2,nota3)
-    base20=calificacion_en_base20(nota1,nota2,nota3)
-    if base20==True:
-        if promedio >=10.5 :
-            print(nombre)
-            print("Aprobo el curso ")   
-        else:
-            print("Reprobo el curso ")       
-    else:
-        input(print("ERROR!_NUMBER"))
-        exit(0)
-    
-    quest=input("Continuar con otro alumno? si/no:\n")
-    
-    if quest!="si":
-        input(print("FIN DEL PROGRAMA"))
-        exit(0)
     clear_screen()
+    try:
+        print("MENU DE OPCIONES\n1.Calcular el promedio de 3 notas.\n2.Calcular promedio ponderado.\n3.Salir.")
+        op=int(input("\n*Elija una opcion\n"))
+        if op==1:
+            clear_screen()
+            #Bucle pregunta
+            while True:
+                clear_screen()
+                print("PROMEDIO DE 3 NOTAS")
+                nombre=input("INGRESE EL NOMBRE DEL ALUMNO:\n")
+                nota1= float(input("Digite su primera calificación:\n"))
+                nota2= float(input("Digite su primera calificación:\n"))
+                nota3= float(input("Digite su tercera calificación:\n"))
+                #Almaceno funciones
+                promedio=Promedio(nota1,nota2,nota3)
+                base20=calificacion_en_base20(nota1,nota2,nota3)
+                if base20==True:
+                    if promedio>=10.5:
+                        print(nombre)
+                        print("Aprobo el curso ")   
+                    else:
+                        print(nombre)
+                        print("Reprobo el curso ")       
+                else:
+                    input(print("ERROR!_NUMBER"))
+                    exit(0)
+                quest=input("Continuar? si/no:\n")
+                if quest!="si":
+                    break
+        if op==2:
+            while True:
+                clear_screen()
+                print("PROMEDIO PONDERADO")
+                nombre=input("INGRESE EL NOMBRE DEL ALUMNO:\n")
+                porcent_C=float(input("Ingrese el Porcentaje de la nota de Conocimiento:\n"))
+                nota_C= float(input("Digite su nota de conocimiento:\n"))
+                porcent_P=float(input("Ingrese el Porcentaje de la nota de Producto:\n"))
+                nota_P= float(input("Digite su nota de producto:\n"))
+                porcent_D=float(input("Ingrese el Porcentaje de la nota de Desempeño:\n"))
+                nota_D= float(input("Digite su nota de desempeño:\n"))
+                Nota_Final=notas_porcentaje(nota_C,nota_P,nota_D,porcent_C,porcent_P,porcent_D)
+                if  Nota_Final>=10.5 :
+                        print(nombre)
+                        print(str(Nota_Final)+" Aprobo el curso ")   
+                else:
+                        print(nombre)
+                        print(str(Nota_Final)+" Reprobo el curso ")
+                quest=input("Continuar? si/no:\n")
+                if quest!="si":
+                    break
+        if op<1 or op>3:
+            clear_screen()
+            print("Invalido")
+            sleep(1)    
+        if op==3:
+            break
+    except:
+        clear_screen()
+        print("Ingrese una opcion valida")
+        sleep(1)
