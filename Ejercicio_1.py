@@ -27,9 +27,14 @@ Se actualizó la condicional de notas
 se agregó entrada y salida de nombre del estudiante
 Se optimizo el codigo añadiendo una funciones
 Se agrego un bucle para preguntar si se desea continuar con el programa
+Se agrego un menu de opciones
+se agrego la opcion "Calcular promedio ponderado"
+se soluciono un problema al ingresar un numero invalido en el promedio de 3 notas
 """
+#Menu de opciones
 while True:
     clear_screen()
+    #Validacion de entrada
     try:
         print("MENU DE OPCIONES\n1.Calcular el promedio de 3 notas.\n2.Calcular promedio ponderado.\n3.Salir.")
         op=int(input("\n*Elija una opcion\n"))
@@ -54,12 +59,12 @@ while True:
                         print(nombre)
                         print("Reprobo el curso ")       
                 else:
-                    input(print("ERROR!_NUMBER"))
-                    exit(0)
+                    print("ERROR!_NUMBER")
                 quest=input("Continuar? si/no:\n")
                 if quest!="si":
                     break
         if op==2:
+            #Bucle pregunta
             while True:
                 clear_screen()
                 print("PROMEDIO PONDERADO")
@@ -70,6 +75,7 @@ while True:
                 nota_P= float(input("Digite su nota de producto:\n"))
                 porcent_D=float(input("Ingrese el Porcentaje de la nota de Desempeño:\n"))
                 nota_D= float(input("Digite su nota de desempeño:\n"))
+                #Almacena 
                 Nota_Final=notas_porcentaje(nota_C,nota_P,nota_D,porcent_C,porcent_P,porcent_D)
                 if  Nota_Final>=10.5 :
                         print(nombre)
